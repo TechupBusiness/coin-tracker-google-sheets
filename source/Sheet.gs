@@ -349,13 +349,13 @@ function processCoinValue(typeBuySell, trade, coins, accounts, fiatCurrency) {
         if(typeBuySell == Buy) {
             // Add all buys (count and fiat value)
             coin.CoinCount += valueCrypto;
-            if(trade.Type==='Trade') {
+            if(trade.Type==='Trade' || trade.Type==='Mining' || trade.Type==='Airdrop' || trade.Type==='Dividend' || trade.Type==='Correction' || trade.Type==='Gift') {
                 coin.PayedCoinPriceTotalFiat += valueFiat;
             }
         } else if(typeBuySell == Sell) {
             // Substract all sells (count and fiat value)
             coin.CoinCount -= valueCrypto;
-            if(trade.Type==='Trade') {
+            if(trade.Type==='Trade' || trade.Type==='Loss' || trade.Type==='Expense' || trade.Type==='Correction' || trade.Type==='Gift') {
                 coin.PayedCoinPriceTotalFiat -= valueFiat;
             }
         } else if(typeBuySell == Fee) {
