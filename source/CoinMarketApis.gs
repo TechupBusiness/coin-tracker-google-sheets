@@ -89,7 +89,8 @@ function fetchCryptoCompareRates(CryptoCurrencies, FiatCurrency, DateTime) {
     if(CryptoCurrencies instanceof Array) {
         neededCryptoCurrencies = [ ];
 
-        for(var currency in CryptoCurrencies) {
+        for(var currencyIndex in CryptoCurrencies) {
+            var currency=CryptoCurrencies[currencyIndex];
             cacheKey = "cc"+FiatCurrency+currency+cacheKeySuffix;
             cachedValue = getCache(cacheKey);
             if(cachedValue>0) {
@@ -115,7 +116,8 @@ function fetchCryptoCompareRates(CryptoCurrencies, FiatCurrency, DateTime) {
         var urls = [ ];
         if(neededCryptoCurrencies instanceof Array) {
             if(!isEmpty(DateTime) && DateTime instanceof Date) {
-                for(var currency in neededCryptoCurrencies) {
+                for(var currencyIndex in neededCryptoCurrencies) {
+                    var currency=neededCryptoCurrencies[currencyIndex];
                     urls.push("https://min-api.cryptocompare.com/data/histohour?limit=1&fsym=" + currency + "&tsym=" + FiatCurrency + "&toTs=" + (dCacheDate.getTime() / 1000) + getCryptoCompareApiKeyUrlSuffix());
                 }
             } else {
